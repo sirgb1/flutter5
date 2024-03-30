@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 //import 'package:flutter_application4/cart.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
+import 'package:flutter_application1/cars_in_cart.dart';
 
 class ProductCard extends StatelessWidget {
   final int id;
   final String title;
-  final String price;
+  final int price;
   final String imageUrl1;
   final String imageUrl2;
   final String imageUrl3;
@@ -78,7 +80,7 @@ class ProductCard extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
                 child: Text(
-                  price,
+                  NumberFormat('##00,000').format(price) + ' ₽',
                   style: const TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,
@@ -99,7 +101,7 @@ List<ProductCard> carList = [
   const ProductCard(
     id: 0,
     title: 'Lada (ВАЗ) 2121 (4x4)',
-    price: '750 000 ₽',
+    price: 750000,
     imageUrl1: 'https://avatars.mds.yandex.net/get-autoru-vos/11396317/b8c47ea92cd535e3424ac8b7c74c80eb/456x342n',
     imageUrl2: 'https://yastatic.net/naydex/autoru/1UY5JP044/96dde5Vr4ND/b1ODDax8AgAsGDxsGIHEYDBFXERuHuo8baYDq0SzJgRipt46SneIKTzcxidyTll2x6skuz8XG1IfiWZ7k70W0rkWQgnpLwHAPd-ubcjUkbI3wMtVadyktrauDmGMuyke7W6arNvgTjvsRh-krVcU-NU17Sd3B5BMwtRjqUs9CQ2iEInJ7KPBDOBG8WkWBsjr7YZVwbGcZjT0K8BjDTkomWuvE-UV55a1rcAS8aSSFHsbtKhlcoZbwgeXpqkNesYM50',
     imageUrl3: 'https://yastatic.net/naydex/autoru/1UY5JP044/96dde5Vr4ND/b1ODDax8AgAsGDxsGIHEYDBFXERuHuo8baYDq0SzJgRipt46SrfJaTydBCF0Gk_iRWrwLj7DzxPeC3Mv0mhDU3kWV8h8ugABvF66rA5TEXK30tsXKcso9rEuDqbIvG_dbu9RadumnmztjJ-7d9GVu9-7Lia3Sx7MwVZt6kAxAkzkW4VDqGuNAWUDN2ceTcMr7gidib0TaDQzbItoyj3t3OlpkOCSaJm0Y80ZtiLYULtcda9j9U6fB0-TLi9Ad0WD5Q',
@@ -111,7 +113,7 @@ List<ProductCard> carList = [
   const ProductCard(
     id: 1,
     title: 'Lada (ВАЗ) Granta, 2023',
-    price: '1 040 000 ₽',
+    price: 1040000,
     imageUrl1: 'https://avatars.mds.yandex.net/get-autoru-vos/11025717/6c733f19f80483698546fc68a7d7798d/1200x900n',
     imageUrl2: 'https://yastatic.net/naydex/autoru/25jb8Dp31/bbad79QX41y/nwXnjHoFNny4bR_qK4f8Ec5MiyIKl9S8N0BPqmdENRAd2kE0k8ya4rakhda9TfNHLucE4cA8CRW9rFVpw8yZoguAc9yrVyE8vSrMv3vSqcPJyRwzDVWaNuxIQmCvTDoKkhIFogOaXLAmf18VbJBwknH9myUWKoaWbHzOP08EAzveDemC_dO3uXb_0yGkRDgeUUJHaxNbXnmhgs4nKsl7x5YRyO1PUA296P7TSGOdM1c-vxzrFuHMECEzA77FBo66E0',
     imageUrl3: 'https://avatars.mds.yandex.net/get-autoru-vos/5928404/dbd509533d2e2d1375e448edf006ced5/1200x900n',
@@ -123,7 +125,7 @@ List<ProductCard> carList = [
   const ProductCard(
     id: 2,
     title: 'Lada (ВАЗ) Granta, 2019',
-    price: '670 000 ₽',
+    price: 670000,
     imageUrl1: 'https://yastatic.net/naydex/autoru/25jb8Dp31/bbad79QX41y/nwXnjHoFNny4bR_qK4f8Ec5MiyIKl9S8N0BPqmdENRAd2kE0kg3aoPakBFao2TJE-2SE4NW83IL8eNYrw1oYo1_Vs13owuDpaGpYK3vSqcPJyRwzDVWaNuxIQmCvTDoKkhIFogOaXLAmf18VbJBwknH9myUWKoaWbHzOP08EAzveDemC_dO3uXb_0yGkRDgeUUJHaxNbXnmhgs4nKsl7x5YRyO1PUA296P7TSGOdM1c-vxzrFuHMECEzA77FBo66E0',
     imageUrl2: 'https://yastatic.net/naydex/autoru/25jb8Dp31/bbad79QX41y/nwXnjHoFNny4bR_qK4f8Ec5MiyIKl9S8N0BPqmdENRAd2kE0ks3a4rVkxpC7TPJT7iVQoMH93RQpuMLrVpnYIV5UZp0_lmMpfGvY6ikVKQNJ2wxxTUIWduvIQqfrS3zJEZPOZwPcjOcntd8KuJ17EHr63epRa0taqn1GMsNAxXkTgarGtNWwPzh02ODjyr-SlEOHKhVcGLKkhYgrrM75iNyXzapMkEa2KntehuWSdlO_tZ9tn2uAECwwCf9Cysf0kk',
     imageUrl3: 'https://yastatic.net/naydex/autoru/25jb8Dp31/bbad79QX41y/nwXnjHoFNny4bR_qK4f8Ec5MiyIKl9S8N0BPqmdENRAd2kE0ks3a4rVkxpC7TPJT7iVQoMH93RQpuMLrVpnYIV5UZp0_lmMpfGvY6ikVKQNJ2wxxTUIWduvIQqfrS3zJEZPOZwPcjOcntd8KuJ17EHr63epRa0taqn1GMsNAxXkTgarGtNWwPzh02ODjyr-SlEOHKhVcGLKkhYgrrM75iNyXzapMkEa2KntehuWSdlO_tZ9tn2uAECwwCf9Cysf0kk',
@@ -135,7 +137,7 @@ List<ProductCard> carList = [
   const ProductCard(
     id: 3,
     title: 'Lada (ВАЗ) 2107, 2007',
-    price: '130 000 ₽',
+    price: 130000,
     imageUrl1: 'https://avatars.mds.yandex.net/get-autoru-vos/1595794/cfd6d922f5664652a52f2601d7977a31/1200x900n',
     imageUrl2: 'https://avatars.mds.yandex.net/get-autoru-vos/1644974/09cb1b58c143f044e0f23af519acd6ab/1200x900n',
     imageUrl3: 'https://yastatic.net/naydex/autoru/25jb8Dp31/bbad79QX41y/nwXnjHoFNny4bR_qK4f8Ec5MiyIKl9S8N0BPqmdENRAd2kE0kswaovakBFa92CaGrHERdcCoHJX97Vd_AhiY4ksBc90_wjQ8PSuM_DvSqcPJyRwzDVWaNuxIQmCvTDoKkhIFogOaXLAmf18VbJBwknH9myUWKoaWbHzOP08EAzveDemC_dO3uXb_0yGkRDgeUUJHaxNbXnmhgs4nKsl7x5YRyO1PUA296P7TSGOdM1c-vxzrFuHMECEzA77FBo66E0',
@@ -145,7 +147,7 @@ List<ProductCard> carList = [
   const ProductCard(
     id: 4,
     title: 'Lada (ВАЗ) Vesta SW, 2021',
-    price: '1 499 000 ₽',
+    price: 1499000,
     imageUrl1: 'https://yastatic.net/naydex/autoru/25jb8Dp31/bbad79QX41y/nwXnjHoFNny4bR_qK4f8Ec5MiyIKl9S8N0BPqmdENRAd2kE0k81aoLdkRda8jPJT7HER4IJo3JR8L5V_QxhbIwkAs8g_wLS96SoZf_vSqcPJyRwzDVWaNuxIQmCvTDoKkhIFogOaXLAmf18VbJBwknH9myUWKoaWbHzOP08EAzveDemC_dO3uXb_0yGkRDgeUUJHaxNbXnmhgs4nKsl7x5YRyO1PUA296P7TSGOdM1c-vxzrFuHMECEzA77FBo66E0',
     imageUrl2: 'https://yastatic.net/naydex/autoru/25jb8Dp31/bbad79QX41y/nwXnjHoFNny4bR_qK4f8Ec5MiyIKl9S8N0BPqmdENRAd2kE0k41aYbfmxta8z3LGOqSFNEDpHMC97Bc-FhkNd4sAp56_16G8_auNPjvSqcPJyRwzDVWaNuxIQmCvTDoKkhIFogOaXLAmf18VbJBwknH9myUWKoaWbHzOP08EAzveDemC_dO3uXb_0yGkRDgeUUJHaxNbXnmhgs4nKsl7x5YRyO1PUA296P7TSGOdM1c-vxzrFuHMECEzA77FBo66E0',
     imageUrl3: 'https://yastatic.net/naydex/autoru/25jb8Dp31/bbad79QX41y/nwXnjHoFNny4bR_qK4f8Ec5MiyIKl9S8N0BPqmdENRAd2kE0k4zZILamhBapmadE-_EE4ABoyNX9rBcqVxmZ915B853_gKDo6asY_vvSqcPJyRwzDVWaNuxIQmCvTDoKkhIFogOaXLAmf18VbJBwknH9myUWKoaWbHzOP08EAzveDemC_dO3uXb_0yGkRDgeUUJHaxNbXnmhgs4nKsl7x5YRyO1PUA296P7TSGOdM1c-vxzrFuHMECEzA77FBo66E0',
@@ -155,7 +157,7 @@ List<ProductCard> carList = [
   const ProductCard(
     id: 5,
     title: 'Lada (ВАЗ) Vesta CNG, 2019',
-    price: '725 000 ₽',
+    price: 725000,
     imageUrl1: 'https://yastatic.net/naydex/autoru/25jb8Dp31/bbad79QX41y/nwXnjHoFNny4bR_qK4f8Ec5MiyIKl9S8N0BPqmdENRAd2kE0ks_aoHekxZa9zyfErDAF4dT9yYDo7NV-F40Y95_BcwhqQ-NrqCpYvjvSqcPJyRwzDVWaNuxIQmCvTDoKkhIFogOaXLAmf18VbJBwknH9myUWKoaWbHzOP08EAzveDemC_dO3uXb_0yGkRDgeUUJHaxNbXnmhgs4nKsl7x5YRyO1PUA296P7TSGOdM1c-vxzrFuHMECEzA77FBo66E0',
     imageUrl2: 'https://yastatic.net/naydex/autoru/25jb8Dp31/bbad79QX41y/nwXnjHoFNny4bR_qK4f8Ec5MiyIKl9S8N0BPqmdENRAd2kE0kg3aIbfmhta8jXKSLmSQoJV9SEG--VVrwppYYgoBZogqlmNp6GpP_zvSqcPJyRwzDVWaNuxIQmCvTDoKkhIFogOaXLAmf18VbJBwknH9myUWKoaWbHzOP08EAzveDemC_dO3uXb_0yGkRDgeUUJHaxNbXnmhgs4nKsl7x5YRyO1PUA296P7TSGOdM1c-vxzrFuHMECEzA77FBo66E0',
     imageUrl3: 'https://avatars.mds.yandex.net/get-autoru-vos/1993805/8192c02cfcd09ba4f4f7c2fa906bb0c0/1200x900n',
@@ -165,7 +167,7 @@ List<ProductCard> carList = [
   const ProductCard(
     id: 6,
     title: 'Lada (ВАЗ) Vesta Cross, 2023',
-    price: '1 758 800 ₽',
+    price: 1758000,
     imageUrl1: 'https://avatars.mds.yandex.net/get-autoru-vos/2163155/0c56469e90d792db113817da519ae56c/1200x900n',
     imageUrl2: 'https://avatars.mds.yandex.net/get-autoru-vos/11124027/a7e9f19a731cbbb4a05b1a63d3873875/1200x900n',
     imageUrl3: 'https://avatars.mds.yandex.net/get-autoru-vos/11836446/82c07c93bac9b10543905b8e2d9ec3ca/1200x900n',
@@ -175,7 +177,7 @@ List<ProductCard> carList = [
   const ProductCard(
     id: 7,
     title: 'Lada (ВАЗ) XRAY, 2016',
-    price: '789 000 ₽',
+    price: 789000,
     imageUrl1: 'https://avatars.mds.yandex.net/get-autoru-vos/1681159/c30b84c65ce4e61e7256848d1c92ded0/1200x900n',
     imageUrl2: 'https://avatars.mds.yandex.net/get-autoru-vos/4077809/0cfb43226b9590d83f68f36d7de85b2c/1200x900n',
     imageUrl3: 'https://yastatic.net/naydex/autoru/25jb8Dp31/bbad79QX41y/nwXnjHoFNny4bR_qK4f8Ec5MiyIKl9S8N0BPqmdENRAd2kE0k80bYvakhVao2bNTuycRoUGoHcBpuNb-Fk3YoQsUckg_w3XpaaqNKzvSqcPJyRwzDVWaNuxIQmCvTDoKkhIFogOaXLAmf18VbJBwknH9myUWKoaWbHzOP08EAzveDemC_dO3uXb_0yGkRDgeUUJHaxNbXnmhgs4nKsl7x5YRyO1PUA296P7TSGOdM1c-vxzrFuHMECEzA77FBo66E0',
@@ -185,7 +187,7 @@ List<ProductCard> carList = [
   const ProductCard(
     id: 8,
     title: 'Lada (ВАЗ) 2114, 2005',
-    price: '85 000 ₽',
+    price: 85000,
     imageUrl1: 'https://avatars.mds.yandex.net/get-autoru-vos/8381424/4c0f213cfc46ebbc9dcaaa7d03c93644/1200x900n',
     imageUrl2: 'https://yastatic.net/naydex/autoru/25jb8Dp31/bbad79QX41y/nwXnjHoFNny4bR_qK4f8Ec5MiyIKl9S8N0BPqmdENRAd2kE0kMxbovYmxZa8jSQHrGVQtIGoXsE9rZYrQ9kYd15Wp17qArR96D7Y_rvSqcPJyRwzDVWaNuxIQmCvTDoKkhIFogOaXLAmf18VbJBwknH9myUWKoaWbHzOP08EAzveDemC_dO3uXb_0yGkRDgeUUJHaxNbXnmhgs4nKsl7x5YRyO1PUA296P7TSGOdM1c-vxzrFuHMECEzA77FBo66E0',
     imageUrl3: 'https://yastatic.net/naydex/autoru/25jb8Dp31/bbad79QX41y/nwXnjHoFNny4bR_qK4f8Ec5MiyIKl9S8N0BPqmdENRAd2kE0k80b4PVlRZaoDKbSL2WQdhT9iYLpuBV-ggzZYsoUs10_gOF9aCoZKzvSqcPJyRwzDVWaNuxIQmCvTDoKkhIFogOaXLAmf18VbJBwknH9myUWKoaWbHzOP08EAzveDemC_dO3uXb_0yGkRDgeUUJHaxNbXnmhgs4nKsl7x5YRyO1PUA296P7TSGOdM1c-vxzrFuHMECEzA77FBo66E0',
@@ -195,7 +197,7 @@ List<ProductCard> carList = [
   const ProductCard(
     id: 9,
     title: 'Lada (ВАЗ) Vesta, 2021',
-    price: '1 195 000 ₽',
+    price: 1195000,
     imageUrl1: 'https://yastatic.net/naydex/autoru/25jb8Dp31/bbad79QX41y/nwXnjHoFNny4bR_qK4f8Ec5MiyIKl9S8N0BPqmdENRAd2kE0ks_bIXZkBFa82GeErGUQNFW9iFXo79Y_wpgZYR4B8Z1og7RofSpP6_vSqcPJyRwzDVWaNuxIQmCvTDoKkhIFogOaXLAmf18VbJBwknH9myUWKoaWbHzOP08EAzveDemC_dO3uXb_0yGkRDgeUUJHaxNbXnmhgs4nKsl7x5YRyO1PUA296P7TSGOdM1c-vxzrFuHMECEzA77FBo66E0',
     imageUrl2: 'https://avatars.mds.yandex.net/get-autoru-vos/1938692/fa11b2103a2073b7f2afecfa482be4fc/1200x900n',
     imageUrl3: 'https://avatars.mds.yandex.net/get-autoru-vos/2073135/121b955083e5c990c986dbc973ef561d/1200x900n',
@@ -208,7 +210,7 @@ List<ProductCard> carList = [
 class DetailedCard extends StatelessWidget {
   final int id;
   final String title;
-  final String price;
+  final int price;
   final String imageUrl1;
   final String imageUrl2;
   final String imageUrl3;
@@ -240,7 +242,7 @@ class DetailedCard extends StatelessWidget {
                 cart.remove(carList[id]);
                 Fluttertoast.showToast(msg: "Товар был убран из корзины", toastLength: Toast.LENGTH_SHORT, gravity: ToastGravity.CENTER, backgroundColor: Colors.grey, textColor: Colors.white);
               } else {
-                cart.add(carList[id]);
+                cart.add(CartedCar(id: id, title: title, price: price, imageUrl1: imageUrl1, imageUrl2: imageUrl2, imageUrl3: imageUrl3, description: description, videoUrl: videoUrl, quantity: 1,));
                 Fluttertoast.showToast(msg: "Товар был добавлен в корзину", toastLength: Toast.LENGTH_SHORT, gravity: ToastGravity.CENTER, backgroundColor: Colors.grey, textColor: Colors.white);
               }
             },
@@ -277,7 +279,7 @@ class DetailedCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                price,
+                NumberFormat('##00,000').format(price) + ' ₽',
                 style: const TextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
@@ -331,5 +333,5 @@ class DetailedCard extends StatelessWidget {
 }
 
 
-List<ProductCard> cart = [];
+List<CartedCar> cart = [];
 List<ProductCard> favorite = [];
