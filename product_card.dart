@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 //import 'package:flutter_application4/cart.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-//import 'package:flutter5/space_and_ruble.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_application1/cars_in_cart.dart';
 
 class ProductCard extends StatelessWidget {
   final int id;
@@ -80,7 +80,7 @@ class ProductCard extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
                 child: Text(
-                  NumberFormat("##00,000", "ru_RU").format(price) + ' ₽',
+                  NumberFormat('##00,000').format(price) + ' ₽',
                   style: const TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,
@@ -157,7 +157,7 @@ List<ProductCard> carList = [
   const ProductCard(
     id: 5,
     title: 'Lada (ВАЗ) Vesta CNG, 2019',
-    price: 720000,
+    price: 725000,
     imageUrl1: 'https://yastatic.net/naydex/autoru/25jb8Dp31/bbad79QX41y/nwXnjHoFNny4bR_qK4f8Ec5MiyIKl9S8N0BPqmdENRAd2kE0ks_aoHekxZa9zyfErDAF4dT9yYDo7NV-F40Y95_BcwhqQ-NrqCpYvjvSqcPJyRwzDVWaNuxIQmCvTDoKkhIFogOaXLAmf18VbJBwknH9myUWKoaWbHzOP08EAzveDemC_dO3uXb_0yGkRDgeUUJHaxNbXnmhgs4nKsl7x5YRyO1PUA296P7TSGOdM1c-vxzrFuHMECEzA77FBo66E0',
     imageUrl2: 'https://yastatic.net/naydex/autoru/25jb8Dp31/bbad79QX41y/nwXnjHoFNny4bR_qK4f8Ec5MiyIKl9S8N0BPqmdENRAd2kE0kg3aIbfmhta8jXKSLmSQoJV9SEG--VVrwppYYgoBZogqlmNp6GpP_zvSqcPJyRwzDVWaNuxIQmCvTDoKkhIFogOaXLAmf18VbJBwknH9myUWKoaWbHzOP08EAzveDemC_dO3uXb_0yGkRDgeUUJHaxNbXnmhgs4nKsl7x5YRyO1PUA296P7TSGOdM1c-vxzrFuHMECEzA77FBo66E0',
     imageUrl3: 'https://avatars.mds.yandex.net/get-autoru-vos/1993805/8192c02cfcd09ba4f4f7c2fa906bb0c0/1200x900n',
@@ -167,7 +167,7 @@ List<ProductCard> carList = [
   const ProductCard(
     id: 6,
     title: 'Lada (ВАЗ) Vesta Cross, 2023',
-    price: 1758800,
+    price: 1758000,
     imageUrl1: 'https://avatars.mds.yandex.net/get-autoru-vos/2163155/0c56469e90d792db113817da519ae56c/1200x900n',
     imageUrl2: 'https://avatars.mds.yandex.net/get-autoru-vos/11124027/a7e9f19a731cbbb4a05b1a63d3873875/1200x900n',
     imageUrl3: 'https://avatars.mds.yandex.net/get-autoru-vos/11836446/82c07c93bac9b10543905b8e2d9ec3ca/1200x900n',
@@ -242,7 +242,7 @@ class DetailedCard extends StatelessWidget {
                 cart.remove(carList[id]);
                 Fluttertoast.showToast(msg: "Товар был убран из корзины", toastLength: Toast.LENGTH_SHORT, gravity: ToastGravity.CENTER, backgroundColor: Colors.grey, textColor: Colors.white);
               } else {
-                cart.add(carList[id]);
+                cart.add(CartedCar(id: id, title: title, price: price, imageUrl1: imageUrl1, imageUrl2: imageUrl2, imageUrl3: imageUrl3, description: description, videoUrl: videoUrl, quantity: 1,));
                 Fluttertoast.showToast(msg: "Товар был добавлен в корзину", toastLength: Toast.LENGTH_SHORT, gravity: ToastGravity.CENTER, backgroundColor: Colors.grey, textColor: Colors.white);
               }
             },
@@ -266,20 +266,20 @@ class DetailedCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Padding(
-              // margin: const EdgeInsets.only(right: 20),
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                ),
+               // margin: const EdgeInsets.only(right: 20),
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              title,
+              style: const TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
               ),
             ),
+               ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                NumberFormat("##00,000", "ru_RU").format(price) + ' ₽',
+                NumberFormat('##00,000').format(price) + ' ₽',
                 style: const TextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
@@ -333,5 +333,5 @@ class DetailedCard extends StatelessWidget {
 }
 
 
-List<ProductCard> cart = [];
+List<CartedCar> cart = [];
 List<ProductCard> favorite = [];
