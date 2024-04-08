@@ -3,6 +3,8 @@ import 'package:flutter_application1/product_card.dart';
 import 'package:intl/intl.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_application1/cars_in_cart.dart';
+import 'package:flutter_application1/signup_page.dart';
+import 'package:flutter_application1/car_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,149 +17,63 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: CarList(),
+      home: MyHomePage(),
     );
   }
 }
 
-class CarList extends StatelessWidget {
-  const CarList({super.key});
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Отечественный автопром', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
-        backgroundColor: Colors.brown[200],
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.shopping_cart),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Cart(cart: cart)));
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.favorite),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const Favorite()));
-            },
-          )
-        ],
-      ),
-      body: GridView.count(
-          crossAxisCount: 2,
-          children: List.generate(
-              10, (index) => carList[index]
-          )
-      ),
-    );
-  }
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
+class _MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 0;
 
-class Cart extends StatefulWidget {
-  final List<CartedCar> cart;
+  static const List<Widget> _widgetOptions = <Widget>[
+    // Pages for each bottom navigation item
+    SignupPage(),
+    CarList(),
+  ];
 
-  Cart({required this.cart});
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
 
-  @override
-  _CartState createState() => _CartState();
-}
-
-class _CartState extends State<Cart> {
-  double totalSum = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    calculateTotalSum();
-}
-
-  void calculateTotalSum() {
-  totalSum = 0;
-  for (var item in widget.cart) {
-    totalSum += item.price * item.quantity;
-  }
-}
-
-  @override
-  Widget build(BuildContext context) {
-    double totalSum = 0;
-
-    for (var i in cart) {
-      totalSum += i.price * i.quantity;
+    // Navigate to the corresponding page when a bottom navigation item is clicked
+    switch (index) {
+      case 0:
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => CarList()));
+        break;
+      case 1:
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => SignupPage()));
+        break;
     }
-
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('Корзина', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-          backgroundColor: Colors.grey,
-        ),
-        body: Column(
-          children: [
-            Expanded(
-              child: GridView.count(
-                crossAxisCount: 1,
-                children: widget.cart.map((item) {
-                  return CartedCar(
-                    id: item.id,
-                    title: item.title,
-                    price: item.price,
-                    imageUrl1: item.imageUrl1,
-                    imageUrl2: item.imageUrl2,
-                    imageUrl3: item.imageUrl3,
-                    videoUrl: item.videoUrl,
-                    description: item.description,
-                    quantity: item.quantity,
-                    onCounterChanged: (value) {
-                      setState(() {item.quantity = value;});
-                      calculateTotalSum();
-                    },
-                  );
-                }).toList(),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Сумма: ' + NumberFormat('##00,000').format(totalSum) + ' ₽'),
-                  ElevatedButton(
-                    child: Text('Купить'),
-                    onPressed: () {
-                      cart.clear();
-                      Fluttertoast.showToast(msg: 'Покупка была сделана!');
-                      Navigator.of(context).pop();
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => Cart(cart: cart,),
-                      ));
-                    },
-                  )
-                ],
-              )
-            )
-          ],
-        ),
-    );
   }
-}
-
-
-class Favorite extends StatelessWidget {
-  const Favorite({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Избранное', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
-          backgroundColor: Colors.pink[200],
-        ),
-        body: GridView.count(
-            crossAxisCount: 2,
-            children: List.generate(favorite.length, (index) => favorite[index])
-        )
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.car_rental),
+            label: 'Список товаров',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline),
+            label: 'Личный кабинет',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+      ),
     );
   }
 }
